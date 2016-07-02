@@ -89,7 +89,7 @@ html, body {
   background-clip: padding-box;
 }
 #keyboard .hover .keyborder, #keyboard .hover .decal .keyborder { border-color: green !important; border-style: solid; }
-#keyboard .selected .keyborder, #keyboard .selected .decal .keyborder { border-color: red !important; border-style: solid; }
+#keyboard:hover .selected .keyborder, #keyboard:hover .selected .decal .keyborder { border-color: red !important; border-style: solid; }
 #keyboard .ghosted { opacity: 0.5; }
 #keyboard .decal .keyborder { border-style: none !important; background: transparent !important; }
 #keyboard .hover .decal .keyborder,
@@ -389,7 +389,7 @@ settings-key(size, adjust = 0) {
     height: size px;
     border-style: solid;
     border-width: 1px;
-    border-color: black;
+    border-color: transparent;
     border-radius: 5px;
     background-color: #cccccc;
     pointer-events: none;
@@ -403,7 +403,7 @@ settings-key(size, adjust = 0) {
     padding: innerPad px;
     border-style: solid;
     border-width: 1px;
-    border-color: rgba(0,0,0,0.1);
+    border-color: transparent;
     background-color: #fcfcfc;
     border-radius: 3px;
     pointer-events: none;
@@ -421,7 +421,7 @@ settings-key(size, adjust = 0) {
     height: (labelSize - adjust) px;
     pointer-events: none;
   }
-  & .keylabel div * { 
+  & .keylabel div * {
     pointer-events: all;
   }
 }
