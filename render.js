@@ -96,7 +96,7 @@ var $renderKey = (typeof(exports) !== 'undefined') ? exports : {};
 		parms.textcapy       = parms.innercapy       + sizes.padding;
 
 		parms.darkColor = key.color;
-		parms.lightColor = lightenColor($color.hex(key.color), 1.2).hex();
+		parms.lightColor = lightenColor($color.hex(key.color), 1.15).hex();
 
 		// Rotation matrix about the origin
 		parms.origin_x = sizes.unit * key.rotation_x;
