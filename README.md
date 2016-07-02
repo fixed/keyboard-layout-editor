@@ -28,6 +28,8 @@ then build / test.
 
 Required Tools:
 
+* **ON WINDOWS**: MingW http://www.mingw.org/ (Download and run installer, 
+  run all below in MingW shell)
 * NodeJS/NPM: https://nodejs.org/
 * GNU Make: http://www.gnu.org/software/make/
 * FontForge: http://fontforge.github.io/en-US/

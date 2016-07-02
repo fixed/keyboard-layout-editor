@@ -1,13 +1,6 @@
-ifeq ($(OS),Windows_NT)
-export NODE_PATH=$(APPDATA)/npm/node_modules
-cp = copy /y "$(subst /,\,$1)" "$(subst /,\,$2)"
-mkdir = @if not exist "$(subst /,\,$1)" mkdir "$(subst /,\,$1)"
-& = &
-else
 cp = cp "$1" "$2"
-mkdir = @if [ ! -d "$1" ]; then mkdir "$1"; fi
+mkdir = mkdir -p "$1";
 & = ;
-endif
 
 all: js_files css_files bower_copy
 .PHONY: js_files css_files bower_copy
