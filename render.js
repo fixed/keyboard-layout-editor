@@ -15,7 +15,7 @@ var $renderKey = (typeof(exports) !== 'undefined') ? exports : {};
 			strokeWidth: 1,
 			"" : 		{ profile: "" , keySpacing: 0, bevelMargin: 6, bevelOffsetTop: 3, bevelOffsetBottom: 3, padding: 3, roundOuter: 5, roundInner: 3 },
 			"DCS" : { profile: "DCS", keySpacing: 0, bevelMargin: 6, bevelOffsetTop: 3, bevelOffsetBottom: 3, padding: 3, roundOuter: 5, roundInner: 3 },
-			"DSA" : { profile: "DSA", keySpacing: 0, bevelMargin: 6, bevelOffsetTop: 0, bevelOffsetBottom: 0, padding: 3, roundOuter: 5, roundInner: 8 },
+			"DSA" : { profile: "DSA", keySpacing: 0, bevelMargin: 8, bevelOffsetTop: 4, bevelOffsetBottom: 4, padding: 3, roundOuter: 5, roundInner: 8 },
 			"SA" :  { profile: "SA", keySpacing: 0, bevelMargin: 6, bevelOffsetTop: 2, bevelOffsetBottom: 2, padding: 3, roundOuter: 5, roundInner: 5 },
 			"CHICKLET" :  { profile: "CHICKLET", keySpacing: 3, bevelMargin: 1, bevelOffsetTop: 0, bevelOffsetBottom: 2, padding: 4, roundOuter: 4, roundInner: 4 },
 		},
@@ -24,7 +24,7 @@ var $renderKey = (typeof(exports) !== 'undefined') ? exports : {};
 			strokeWidth: 0.20,
 			"" :    {  profile: "" , keySpacing: 0.4445, bevelMargin: 3.1115, padding: 0, roundOuter: 1.0, roundInner: 2.0 },
 			"DCS" : {  profile: "DCS", keySpacing: 0.4445, bevelMargin: 3.1115, padding: 0, roundOuter: 1.0, roundInner: 2.0 },
-			"DSA" : {  profile: "DSA", keySpacing: 0.4445, bevelMargin: 3.1115, padding: 0, roundOuter: 1.0, roundInner: 2.0 },
+			"DSA" : {  profile: "DSA", keySpacing: 0.4445, bevelMargin: 4.1, padding: 0, roundOuter: 1.0, roundInner: 2.0 },
 			"SA" : {  profile: "SA", keySpacing: 0.4445, bevelMargin: 3.1115, padding: 0, roundOuter: 1.0, roundInner: 2.0 },
 			"CHICKLET" : {  profile: "CHICKLET", keySpacing: 0.4445, bevelMargin: 3.1115, padding: 0, roundOuter: 1.0, roundInner: 2.0 },
 		}
@@ -183,7 +183,7 @@ var $renderKey = (typeof(exports) !== 'undefined') ? exports : {};
 		var units = "px";
 	  var bbox = { x: 99999999, y:99999999, x2:-99999999, y2:-99999999 };
 	  var keysSVG = "";
-	  keys.forEach(function(key,index) {	  	
+	  keys.forEach(function(key,index) {
 	  	keysSVG += $renderKey.svg(key, index, bbox, unitSizes[units][getProfile(key)]);
 	  });
 
@@ -191,7 +191,7 @@ var $renderKey = (typeof(exports) !== 'undefined') ? exports : {};
 	  var kbdMargin = 10, kbdPadding = 5;
 	  return keyboard_svg({
 	  	margin: 10,
-	  	padding: 5,	  	
+	  	padding: 5,
 	  	width: bbox.x2,
 	  	height: bbox.y2,
 	  	units: units,
