@@ -30,7 +30,7 @@ All rights reserved.
 <script type="text/javascript" src="js/bootstrap-colorpicker-module.min.js"></script>
 <script type="text/javascript" src="js/doT.min.js"></script>
 <script type="text/javascript" src="js/urlon.js"></script>
-<script type="text/javascript" src="js/cssparser.min.js"></script><script type="text/javascript">$cssParser = parser;</script>
+<script type="text/javascript" src="js/cssparser.min.js"></script><script type="text/javascript">$cssParser = cssparser;</script>
 <script type="text/javascript" src="js/color.js"></script>
 <script type="text/javascript" src="js/jsonl.min.js"></script><script type="text/javascript">jsonl = parser;</script>
 <script type="text/javascript" src="js/html2canvas.min.js"></script>
@@ -831,7 +831,7 @@ Nav Bar / Header
           <tr ng-repeat="(k,v) in switchCount()"><td>{{k}}</td><td>{{switchNames[k]}}</td><td>{{v}}</td></tr>
         </table>
        </div>
-      </div> 
+      </div>
      <div class="btn-group btn-group-xs" role="group">
       <br><button type="button" class="btn btn-success" ng-click="printDiv('printSummary')"><i class="fa fa-print"></i> Print summary</button>
      </div>
@@ -1210,13 +1210,13 @@ DOT.js Templates
 
     <div style="left: {{=parms.outercapx}}px; top: {{=parms.outercapy}}px;
                 width: {{=parms.outercapwidth}}px; height: {{=parms.outercapheight}}px;
-                border-style: solid; border-width: {{=sizes.strokeWidth}}px; border-color: black; border-radius: {{=sizes.roundOuter}}px;
+                border-style: solid; border-width: {{=sizes.strokeWidth}}px; border-color: transparent; border-radius: {{=sizes.roundOuter}}px;
                 background-color: {{=parms.darkColor}};"
          class="keyborder"></div>
   {{? parms.jShaped}}
     <div style="left: {{=parms.outercapx2}}px; top: {{=parms.outercapy2}}px;
                 width: {{=parms.outercapwidth2}}px; height: {{=parms.outercapheight2}}px;
-                border-style: solid; border-width: {{=sizes.strokeWidth}}px; border-color: black; border-radius: {{=sizes.roundOuter}}px;
+                border-style: solid; border-width: {{=sizes.strokeWidth}}px; border-color: transparent; border-radius: {{=sizes.roundOuter}}px;
                 background-color: {{=parms.darkColor}};"
          class="keyborder"></div>
     <div style="left: {{=parms.outercapx + sizes.strokeWidth}}px; top: {{=parms.outercapy + sizes.strokeWidth}}px;
@@ -1230,14 +1230,14 @@ DOT.js Templates
   {{? !key.decal}}
     <div style="left: {{=parms.innercapx}}px; top: {{=parms.innercapy}}px;
                 width: {{=parms.innercapwidth}}px; height: {{=parms.innercapheight}}px;
-                border-style: solid; border-width: {{=sizes.strokeWidth}}px; border-color: rgba(0,0,0,0.1);
+                border-style: solid; border-width: {{=sizes.strokeWidth}}px; border-color: transparent;
                 background-color: {{=parms.lightColor}};
                 border-radius: {{=sizes.roundInner}}px;"
          class="keytop"></div>
     {{? parms.jShaped && !key.stepped }}
       <div style="left: {{=parms.innercapx2}}px; top: {{=parms.innercapy2}}px;
                   width: {{=parms.innercapwidth2}}px; height: {{=parms.innercapheight2}}px;
-                  border-style: solid; border-width: {{=sizes.strokeWidth}}px; border-color: rgba(0,0,0,0.1); border-radius: {{=sizes.roundInner}}px;
+                  border-style: solid; border-width: {{=sizes.strokeWidth}}px; border-color: transparent; border-radius: {{=sizes.roundInner}}px;
                   background-color: {{=parms.lightColor}};
                   background-position: {{=Math.min(parms.innercapx-parms.innercapx2,0)}}px {{=Math.min(parms.innercapy-parms.innercapy2,0)}}px;
                   background-size: {{=Math.max(parms.innercapwidth,parms.innercapwidth2)}}px {{=Math.max(parms.innercapheight,parms.innercapheight2)}}px;"
