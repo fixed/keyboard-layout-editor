@@ -810,6 +810,7 @@
 				rotation_angle : function() { return Math.max(-180, Math.min(180, value)); },
 				rotation_x : function() { return Math.max(0, Math.min(36, value)); },
 				rotation_y : function() { return Math.max(0, Math.min(36, value)); },
+				"meta.padding" : function() { var ndx = value.indexOf(';'); return ndx>=0 ? value.substring(0,ndx) : value; },
 				"meta.radii" : function() { var ndx = value.indexOf(';'); return ndx>=0 ? value.substring(0,ndx) : value; }
 			};
 			return (v[prop] || v._)();

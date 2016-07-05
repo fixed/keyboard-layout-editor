@@ -110,7 +110,7 @@ var $serial = (typeof(exports) !== 'undefined') ? exports : {};
 		sm: "", sb:"", st:""                              // switch
 	};
 
-	var _defaultMetaData = { backcolor: '#eeeeee', name: '', author: '', notes: '', background: undefined, radii: '', switchMount: '', switchBrand: '', switchType: '' };
+	var _defaultMetaData = { backcolor: '#eeeeee', name: '', author: '', notes: '', background: undefined, padding: '', radii: '', switchMount: '', switchBrand: '', switchType: '' };
 	$serial.defaultKeyProps = function() { return copy(_defaultKeyProps); };
 	$serial.defaultMetaData = function() { return copy(_defaultMetaData); };
 

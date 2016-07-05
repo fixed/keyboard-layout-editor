@@ -15,7 +15,7 @@ var $renderKey = (typeof(exports) !== 'undefined') ? exports : {};
 			strokeWidth: 1,
 			"" : 		{ profile: "" , keySpacing: 0, bevelMargin: 6, bevelOffsetTop: 3, bevelOffsetBottom: 3, padding: 3, roundOuter: 5, roundInner: 3 },
 			"DCS" : { profile: "DCS", keySpacing: 0, bevelMargin: 6, bevelOffsetTop: 3, bevelOffsetBottom: 3, padding: 3, roundOuter: 5, roundInner: 3 },
-			"DSA" : { profile: "DSA", keySpacing: 0, bevelMargin: 8, bevelOffsetTop: 4, bevelOffsetBottom: 4, padding: 3, roundOuter: 5, roundInner: 8 },
+			"DSA" : { profile: "DSA", keySpacing: 0, bevelMargin: 8, bevelOffsetTop: 0, bevelOffsetBottom: 0, padding: 3, roundOuter: 2, roundInner: 6 },
 			"SA" :  { profile: "SA", keySpacing: 0, bevelMargin: 6, bevelOffsetTop: 2, bevelOffsetBottom: 2, padding: 3, roundOuter: 5, roundInner: 5 },
 			"CHICKLET" :  { profile: "CHICKLET", keySpacing: 3, bevelMargin: 1, bevelOffsetTop: 0, bevelOffsetBottom: 2, padding: 4, roundOuter: 4, roundInner: 4 },
 		},
@@ -38,9 +38,9 @@ var $renderKey = (typeof(exports) !== 'undefined') ? exports : {};
 	});
 
 	// Lighten a color by the specified amount
-	function lightenColor(color,mod) {
+	function offsetLuminance(color,mod) {
 		var c = $color.sRGB8(color.r,color.g,color.b).Lab();
-		c.l = Math.min(100,c.l*mod);
+		c.l = Math.max(0, Math.min(100,c.l+mod));
 		return c.sRGB8();
 	}
 
@@ -96,7 +96,7 @@ var $renderKey = (typeof(exports) !== 'undefined') ? exports : {};
 		parms.textcapy       = parms.innercapy       + sizes.padding;
 
 		parms.darkColor = key.color;
-		parms.lightColor = lightenColor($color.hex(key.color), 1.15).hex();
+		parms.lightColor = offsetLuminance($color.hex(key.color), 10).hex();
 
 		// Rotation matrix about the origin
 		parms.origin_x = sizes.unit * key.rotation_x;
@@ -134,8 +134,8 @@ var $renderKey = (typeof(exports) !== 'undefined') ? exports : {};
 
 	var keycap_html, keycap_svg, keyboard_svg;
 	$renderKey.init = function() {
-		keycap_html = doT.template($('#keycap_html').html(), {__proto__: doT.templateSettings, varname:"key, sizes, parms, $sanitize, lightenColor"});
-		keycap_svg = doT.template($('#keycap_svg').html(), {__proto__: doT.templateSettings, varname:"key, sizes, parms, $sanitize, lightenColor", strip:false});
+		keycap_html = doT.template($('#keycap_html').html(), {__proto__: doT.templateSettings, varname:"key, sizes, parms, $sanitize, offsetLuminance"});
+		keycap_svg = doT.template($('#keycap_svg').html(), {__proto__: doT.templateSettings, varname:"key, sizes, parms, $sanitize, offsetLuminance", strip:false});
 		keyboard_svg = doT.template($('#keyboard_svg').html(), {__proto__: doT.templateSettings, varname:"parms", strip:false});
 	};
 
@@ -161,7 +161,7 @@ var $renderKey = (typeof(exports) !== 'undefined') ? exports : {};
 		}
 
 		// Generate the HTML
-		return keycap_html(key, sizes, parms, $sanitize, lightenColor);
+		return keycap_html(key, sizes, parms, $sanitize, offsetLuminance);
 	};
 
 	// Given a key, generate the SVG needed to render it
@@ -175,7 +175,7 @@ var $renderKey = (typeof(exports) !== 'undefined') ? exports : {};
 		bbox.y2 = Math.max(bbox.y2, parms.bbox.y2);
 		parms.index = index;
 
-		return keycap_svg(key, sizes, parms, $sanitize, lightenColor);
+		return keycap_svg(key, sizes, parms, $sanitize, offsetLuminance);
 	};
 
 	$renderKey.fullSVG = function(keys, metadata) {

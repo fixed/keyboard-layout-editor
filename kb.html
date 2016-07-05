@@ -6,7 +6,7 @@ All rights reserved.
 <!DOCTYPE html>
 <html ng-app="kbApp">
 <head>
-<title>Keyboard Layout Editor</title>
+<title>KBE-X</title>
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="screen">
 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
@@ -32,7 +32,7 @@ All rights reserved.
 <script type="text/javascript" src="js/urlon.js"></script>
 <script type="text/javascript" src="js/cssparser.min.js"></script><script type="text/javascript">$cssParser = cssparser;</script>
 <script type="text/javascript" src="js/color.js"></script>
-<script type="text/javascript" src="js/jsonl.min.js"></script><script type="text/javascript">jsonl = parser;</script>
+<script type="text/javascript" src="js/jsonl.min.js"></script><script type="text/javascript">jsonl = jsonl;</script>
 <script type="text/javascript" src="js/html2canvas.min.js"></script>
 <script type="text/javascript" src="extensions.js"></script>
 <script type="text/javascript" src="render.js"></script>
@@ -63,7 +63,7 @@ Nav Bar / Header
     </button>
 
     <!-- Main branding icon/title -->
-    <a class="navbar-brand" href="#"><i class="fa fa-keyboard-o"></i> keyboard-layout-editor.com</a>
+    <a class="navbar-brand" href="#"><i class="fa fa-keyboard-o"></i> KBE-X</a>
   </div>
   <div class="collapse navbar-collapse navbar-ex1-collapse">
 
@@ -231,7 +231,7 @@ Nav Bar / Header
      ngf-drop="true" ngf-change="uploadJson($files, $event)" ngf-drag-over-class="drag-over">
 
     <div id='keyboard-bg'
-         ng-attr-style="height:{{kbHeight}}px; width:{{kbWidth}}px; background-color:{{keyboard.meta.backcolor}}; border-radius: {{keyboard.meta.radii || '6px'}}; {{keyboard.meta.background.style}}">
+         ng-attr-style="height:{{kbHeight}}px; width:{{kbWidth}}px; background-color:{{keyboard.meta.backcolor}}; padding: {{keyboard.meta.padding || '5px'}}; border-radius: {{keyboard.meta.radii || '6px'}}; {{keyboard.meta.background.style}}">
       <div ng-repeat="key in keys()"
          class="key {{key.profile}}"
          ng-mouseover="hoveredKey=key"
@@ -632,6 +632,19 @@ Nav Bar / Header
                 </div>
               </div>
 
+              <!-- Padding -->
+              <div class="form-group form-group-sm">
+                <label class="control-label text-nowrap" style='margin-left: 5px;' for="kbdpaddingeditor">Padding:</label>
+
+                <div class="hint--top hint--rounded"
+                     data-hint="Specify the padding for this keyboard, in CSS3 format.">
+                  <input id="kbdpaddingeditor" class="form-control input-sm" type='text'
+                         ng-model="meta.padding"
+                         ng-change="updateMeta('padding')"
+                         ng-blur="validateMeta('padding')">
+                </div>
+              </div>
+
               <!-- Corner radii -->
               <div class="form-group form-group-sm">
                 <label class="control-label text-nowrap" style='margin-left: 5px;' for="kbdradiieditor">Radii:</label>
@@ -651,6 +664,7 @@ Nav Bar / Header
                          ng-blur="validateMeta('radii')">
                 </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -1210,7 +1224,7 @@ DOT.js Templates
 
     <div style="left: {{=parms.outercapx}}px; top: {{=parms.outercapy}}px;
                 width: {{=parms.outercapwidth}}px; height: {{=parms.outercapheight}}px;
-                border-style: solid; border-width: {{=sizes.strokeWidth}}px; border-color: transparent; border-radius: {{=sizes.roundOuter}}px;
+                border-style: solid; border-width: {{=sizes.strokeWidth}}px; border-color: rgba(0,0,0,.2); border-radius: {{=sizes.roundOuter}}px;
                 background-color: {{=parms.darkColor}};"
          class="keyborder"></div>
   {{? parms.jShaped}}
@@ -1259,7 +1273,7 @@ DOT.js Templates
           {{? sanitizedLabel !== "" }}
             {{ var textSize = key.textSize[i] || key.default.textSize; }}
             {{ var textColor = key.textColor[i] || key.default.textColor; }}
-            {{ if(i<9) textColor = lightenColor($color.hex(textColor), 1.2).hex(); }}
+            {{ if(i<9) textColor = offsetLuminance($color.hex(textColor), 10).hex(); }}
             <div class='keylabel keylabel{{=i}} textsize{{=textSize}}' style='color:{{=textColor}}; width:{{=parms.textcapwidth}}px; height:{{=parms.textcapheight}}px;'>
               <div style='width:{{=parms.textcapwidth}}px; max-width:{{=parms.textcapwidth}}px; height:{{=parms.textcapheight}}px;'>{{=sanitizedLabel}}</div>
             </div>
